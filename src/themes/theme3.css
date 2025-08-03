@@ -2,14 +2,13 @@
   .theme-theme3 {
     --primary-color: theme(--color-purple-600);
     --secondary-color: theme(--color-purple-50);
-    --font-pacifico: var(--font-pacifico);
   }
 }
 
 @layer components {
   .theme-theme3 {
     /* Import Pacifico font */
-    font-family: var(--font-pacifico), "Pacifico", "Comic Sans MS", cursive;
+    font-family: "Pacifico", "Comic Sans MS", cursive;
 
     /* =========================== Component Styles ======================= */
     /* Custom button makeup */
@@ -134,7 +133,7 @@
 
       & > p {
         @apply text-gray-600 leading-relaxed mb-6 text-lg;
-        font-family: var(--font-pacifico), "Pacifico", "Comic Sans MS", cursive;
+        font-family: "Pacifico", "Comic Sans MS", cursive;
       }
 
       & > a {
@@ -286,8 +285,7 @@
         }
         p {
           @apply text-gray-600 text-lg mb-3;
-          font-family: var(--font-pacifico), "Pacifico", "Comic Sans MS",
-            cursive;
+          font-family: "Pacifico", "Comic Sans MS", cursive;
         }
         a {
           @apply font-normal transition-all duration-300 text-xl relative;
@@ -338,7 +336,7 @@
 
       &::placeholder {
         @apply text-gray-400;
-        font-family: var(--font-pacifico), "Pacifico", cursive;
+        font-family: "Pacifico", cursive;
       }
     }
 
@@ -402,7 +400,7 @@
 
       p {
         @apply text-2xl text-gray-600 max-w-4xl mx-auto mb-12 leading-relaxed;
-        font-family: var(--font-pacifico), "Pacifico", "Comic Sans MS", cursive;
+        font-family: "Pacifico", "Comic Sans MS", cursive;
         transform: rotate(1deg);
       }
     }
@@ -712,7 +710,7 @@
 
           &::placeholder {
             @apply text-gray-400;
-            font-family: var(--font-pacifico), "Pacifico", cursive;
+            font-family: "Pacifico", cursive;
           }
         }
       }
@@ -734,8 +732,7 @@
           }
           div {
             @apply space-y-6 text-gray-600 leading-relaxed text-xl;
-            font-family: var(--font-pacifico), "Pacifico", "Comic Sans MS",
-              cursive;
+            font-family: "Pacifico", "Comic Sans MS", cursive;
           }
         }
 
@@ -790,8 +787,7 @@
           }
           p {
             @apply text-gray-600 max-w-3xl mx-auto text-xl;
-            font-family: var(--font-pacifico), "Pacifico", "Comic Sans MS",
-              cursive;
+            font-family: "Pacifico", "Comic Sans MS", cursive;
           }
         }
 
@@ -836,7 +832,7 @@
       }
       p {
         @apply text-gray-600 font-normal text-xl;
-        font-family: var(--font-pacifico), "Pacifico", "Comic Sans MS", cursive;
+        font-family: "Pacifico", "Comic Sans MS", cursive;
       }
     }
 

@@ -2,14 +2,13 @@
   .theme-theme2 {
     --primary-color: theme(--color-emerald-500);
     --secondary-color: theme(--color-gray-800);
-    --font-playfair: var(--font-playfair-display);
   }
 }
 
 @layer components {
   .theme-theme2 {
     /* Import serif font */
-    font-family: var(--font-playfair), "Playfair Display", "Georgia", serif;
+    font-family: "Playfair Display", "Georgia", serif;
 
     /* =========================== Component Styles ======================= */
     /* Custom button makeup */
