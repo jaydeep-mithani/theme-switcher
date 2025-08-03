@@ -1,22 +1,50 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Simple fade transition for theme changes */
+body {
+  transition: opacity 0.3s ease-in-out;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Smooth transitions for major visual changes */
+* {
+  transition: background-color 0.4s ease, background-image 0.4s ease,
+    color 0.4s ease, border-color 0.4s ease;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Prevent transitions on page load */
+.preload * {
+  transition: none !important;
+}
+
+/* Add preload class removal via CSS animation */
+html {
+  animation: removePreload 0.1s ease 0.1s forwards;
+}
+
+@keyframes removePreload {
+  to {
+    /* This will be handled by JavaScript if you add the preload class to body initially */
   }
+}
+
+/* Optional: Add a subtle overlay effect during theme switching */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: opacity 0.2s ease;
+}
+
+/* You can trigger this class when theme changes */
+body.theme-switching::before {
+  opacity: 1;
 }
 
 body {
@@ -24,3 +52,8 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Import themes */
+@import "../themes/theme1.css";
+@import "../themes/theme2.css";
+@import "../themes/theme3.css";
