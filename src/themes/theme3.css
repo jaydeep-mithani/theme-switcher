@@ -65,6 +65,381 @@
       }
     }
 
+    /* Product card makeup */
+    .product-card {
+      @apply relative rounded-3xl overflow-hidden transition-all duration-500 ease-out;
+      background: linear-gradient(135deg, #ffffff, #f8fafc);
+      border: 3px solid transparent;
+      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.8);
+      font-family: "Pacifico", "Comic Sans MS", cursive;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(
+          45deg,
+          #ff6b6b,
+          #feca57,
+          #48cae4,
+          #ff9ff3,
+          #a8e6cf,
+          #ff8b94
+        );
+        background-size: 400% 400%;
+        border-radius: 1.75rem;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        animation: gradientShift 4s ease infinite;
+      }
+
+      &:hover::before {
+        opacity: 1;
+      }
+
+      &:hover {
+        transform: translateY(-12px) rotate(-2deg) scale(1.02);
+        box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.2);
+        .product-card-image-container {
+          @apply rounded-t-3xl bg-gradient-to-br from-pink-200 to-purple-200;
+        }
+      }
+      .product-card-image-container {
+        @apply relative w-full h-72 bg-gradient-to-br from-pink-50 to-purple-50 overflow-hidden;
+
+        &::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            45deg,
+            rgba(255, 107, 107, 0.05) 0%,
+            rgba(72, 202, 228, 0.05) 100%
+          );
+          pointer-events: none;
+        }
+      }
+
+      .product-card-image {
+        @apply w-full h-full object-contain transition-all duration-500 ease-out p-6;
+        filter: saturate(1.2) brightness(1.1);
+
+        &.loading {
+          @apply opacity-0;
+          transform: scale(0.8) rotate(-10deg);
+        }
+
+        &.loaded {
+          @apply opacity-100;
+          transform: scale(1) rotate(0deg);
+        }
+
+        .product-card:hover & {
+          transform: scale(1.1) rotate(5deg);
+          filter: saturate(1.4) brightness(1.2);
+        }
+      }
+
+      .product-card-overlay {
+        @apply absolute top-6 right-6 flex flex-col space-y-3 opacity-0 transition-all duration-500 ease-out;
+
+        .product-card:hover & {
+          @apply opacity-100;
+          transform: translateX(-8px) rotate(10deg);
+        }
+      }
+
+      .product-card-action-btn {
+        @apply w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-all duration-400 relative;
+        background: linear-gradient(45deg, #ff6b6b, #feca57);
+        animation: float 3s ease-in-out infinite;
+
+        &::before {
+          content: "✨";
+          position: absolute;
+          top: -8px;
+          right: -8px;
+          font-size: 0.75rem;
+          opacity: 0;
+          transition: all 0.3s ease;
+        }
+
+        &:hover {
+          transform: scale(1.2) rotate(15deg);
+          box-shadow: 0 15px 40px -5px rgba(255, 107, 107, 0.4);
+          animation-duration: 1s;
+        }
+
+        &:hover::before {
+          opacity: 1;
+          animation: sparkle 1s ease-in-out infinite;
+        }
+
+        &:nth-child(1) {
+          background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+          animation-delay: 0s;
+        }
+
+        &:nth-child(2) {
+          background: linear-gradient(45deg, #48cae4, #0096c7);
+          animation-delay: 1s;
+        }
+      }
+
+      .product-card-heart {
+        @apply w-6 h-6 text-white transition-all duration-300;
+
+        &.favorited {
+          @apply text-white fill-current;
+          animation: heartBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+      }
+
+      .product-card-eye {
+        @apply w-6 h-6 text-white transition-all duration-300;
+      }
+
+      .product-card-category-badge {
+        @apply absolute top-6 left-6 px-4 py-2 rounded-full text-sm font-normal uppercase tracking-wide shadow-lg;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+        transform: rotate(-8deg);
+        animation: wiggle 2s ease-in-out infinite;
+      }
+
+      .product-card-content {
+        @apply p-8 bg-white/30 hover:bg-transparent;
+      }
+
+      .product-card-title {
+        @apply text-2xl font-normal mb-3 line-clamp-2 leading-tight;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        min-height: 4rem;
+      }
+
+      .product-card-description {
+        @apply text-gray-600 text-lg mb-6 leading-relaxed line-clamp-3;
+        font-family: "Pacifico", "Comic Sans MS", cursive;
+        min-height: 5rem;
+      }
+
+      .product-card-rating {
+        @apply flex items-center space-x-3 mb-6;
+      }
+
+      .product-card-stars {
+        @apply flex items-center space-x-1;
+      }
+
+      .product-card-star {
+        @apply w-6 h-6 transition-all duration-300;
+
+        &.product-card-star-filled {
+          color: #feca57;
+          fill: #feca57;
+          filter: drop-shadow(0 2px 4px rgba(254, 202, 87, 0.3));
+          animation: starTwinkle 2s ease-in-out infinite;
+        }
+
+        &.product-card-star-half {
+          background: linear-gradient(90deg, #feca57 50%, #d1d5db 50%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        &.product-card-star-empty {
+          @apply text-gray-300;
+        }
+      }
+
+      .product-card-rating-text {
+        @apply text-base text-gray-500 font-normal;
+        font-family: "Comic Sans MS", cursive;
+      }
+
+      .product-card-footer {
+        @apply flex items-center justify-between;
+      }
+
+      .product-card-price {
+        @apply flex items-baseline;
+      }
+
+      .product-card-currency {
+        @apply text-xl font-normal text-gray-500;
+      }
+
+      .product-card-amount {
+        @apply text-3xl font-normal;
+        background: linear-gradient(45deg, #ff6b6b, #feca57);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: priceGlow 3s ease-in-out infinite;
+      }
+
+      .product-card-cart-btn {
+        @apply flex items-center space-x-3 px-8 py-4 rounded-full font-normal transition-all duration-400 relative overflow-hidden;
+        background: linear-gradient(45deg, #ff6b6b, #feca57, #48cae4, #ff9ff3);
+        background-size: 400% 400%;
+        animation: gradientShift 3s ease infinite;
+        color: white;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 10px 30px -5px rgba(255, 107, 107, 0.4);
+        text-transform: none;
+        font-size: 1.125rem;
+
+        &::before {
+          content: "🛒";
+          position: absolute;
+          top: 50%;
+          left: -30px;
+          transform: translateY(-50%);
+          font-size: 1.2rem;
+          opacity: 0;
+          transition: all 0.4s ease;
+        }
+
+        &::after {
+          content: "✨";
+          position: absolute;
+          top: 50%;
+          right: -30px;
+          transform: translateY(-50%);
+          font-size: 1.2rem;
+          opacity: 0;
+          transition: all 0.4s ease;
+        }
+
+        &:hover {
+          transform: translateY(-6px) scale(1.05) rotate(2deg);
+          animation-duration: 1s;
+          box-shadow: 0 20px 40px -5px rgba(255, 107, 107, 0.6);
+        }
+
+        &:hover::before,
+        &:hover::after {
+          opacity: 1;
+        }
+
+        &:hover::before {
+          left: -20px;
+        }
+
+        &:hover::after {
+          right: -20px;
+        }
+      }
+
+      .product-card-cart-icon {
+        @apply w-5 h-5;
+      }
+
+      .product-card-cart-text {
+        @apply text-lg font-normal;
+      }
+
+      /* Keyframe animations */
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        33% {
+          transform: translateY(-8px) rotate(5deg);
+        }
+        66% {
+          transform: translateY(8px) rotate(-5deg);
+        }
+      }
+
+      @keyframes sparkle {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1) rotate(0deg);
+        }
+        50% {
+          opacity: 0.5;
+          transform: scale(1.2) rotate(180deg);
+        }
+      }
+
+      @keyframes heartBounce {
+        0% {
+          transform: scale(1);
+        }
+        25% {
+          transform: scale(1.3) rotate(10deg);
+        }
+        50% {
+          transform: scale(1.1) rotate(-5deg);
+        }
+        75% {
+          transform: scale(1.2) rotate(3deg);
+        }
+        100% {
+          transform: scale(1) rotate(0deg);
+        }
+      }
+
+      @keyframes wiggle {
+        0%,
+        100% {
+          transform: rotate(-8deg);
+        }
+        25% {
+          transform: rotate(-5deg);
+        }
+        75% {
+          transform: rotate(-10deg);
+        }
+      }
+
+      @keyframes starTwinkle {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.7;
+          transform: scale(1.1);
+        }
+      }
+
+      @keyframes priceGlow {
+        0%,
+        100% {
+          filter: brightness(1);
+        }
+        50% {
+          filter: brightness(1.2) drop-shadow(0 0 8px rgba(255, 107, 107, 0.3));
+        }
+      }
+    }
+
     /* Card makeup */
     .card {
       @apply relative rounded-3xl p-8 transition-all duration-500 ease-out overflow-hidden;
@@ -617,6 +992,26 @@
 
       .home-cards-container {
         @apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12;
+      }
+
+      .products-container {
+        @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mb-12;
+      }
+
+      .loading {
+        @apply w-full h-40 flex items-center justify-center mb-36;
+
+        .loader-icon {
+          @apply w-12 h-12 animate-spin;
+          color: var(--primary-color);
+        }
+      }
+
+      .fetch-fail {
+        @apply text-2xl flex items-center justify-center p-5 bg-yellow-50/20 text-orange-200 mb-24 rounded-md gap-3 rotate-2;
+        .error-icon {
+          @apply w-8 h-8;
+        }
       }
     }
 
