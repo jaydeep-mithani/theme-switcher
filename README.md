@@ -69,6 +69,11 @@ A beautiful, responsive Next.js application featuring dynamic theme switching wi
 ```
 theme-switcher/
 ├── src/
+│   ├── api/
+│   │   ├── services/
+│   │   │   ├── index.ts
+│   │   │   └── products.ts
+│   │   └── routes.ts
 │   ├── app/
 │   │   ├── about/
 │   │   │   └── page.tsx
@@ -95,6 +100,8 @@ theme-switcher/
 │   │   │   └── index.tsx
 │   │   ├── navbar/
 │   │   │   └── index.tsx
+│   │   ├── productCard/
+│   │   │   └── index.tsx
 │   │   ├── statCard/
 │   │   │   └── index.tsx
 │   │   ├── themeButton/
@@ -113,6 +120,7 @@ theme-switcher/
 │       └── theme3.css
 ├── public/
 │   └── logo.png
+├── .env
 └── package.json
 ```
 

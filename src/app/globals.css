@@ -5,10 +5,10 @@ body {
   transition: opacity 0.3s ease-in-out;
 }
 
-/* Smooth transitions for major visual changes */
+/* Smooth transitions for visual changes */
 * {
   transition: background-color 0.4s ease, background-image 0.4s ease,
-    color 0.4s ease, border-color 0.4s ease;
+    color 0.4s ease, border-color 0.4s ease, transform 0.3s ease;
 }
 
 /* Prevent transitions on page load */
@@ -16,18 +16,17 @@ body {
   transition: none !important;
 }
 
-/* Add preload class removal via CSS animation */
+/* Preload class removal via CSS animation */
 html {
   animation: removePreload 0.1s ease 0.1s forwards;
 }
 
 @keyframes removePreload {
   to {
-    /* This will be handled by JavaScript if you add the preload class to body initially */
   }
 }
 
-/* Optional: Add a subtle overlay effect during theme switching */
+/* Subtle overlay effect during theme switching */
 body::before {
   content: "";
   position: fixed;
@@ -42,7 +41,7 @@ body::before {
   transition: opacity 0.2s ease;
 }
 
-/* You can trigger this class when theme changes */
+/* Class triggered when theme changes */
 body.theme-switching::before {
   opacity: 1;
 }
