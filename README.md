@@ -181,3 +181,5 @@ Each theme file contains:
 - **Next.js team** for the excellent React framework
 - **Lucide** for the beautiful icon library
 - **Google Fonts** for the typography options
+
+Note: In rare cases, https://fakestoreapi.com may not respond due to ISP-level network issues. If the product list doesn't load, try switching to a different network or using a VPN.
